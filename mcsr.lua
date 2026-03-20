@@ -14,7 +14,7 @@ local resources_folder = os.getenv("HOME") .. "/" .. ".config/waywall/resources/
 
 local eye_overlay_path = resources_folder .. "images/measuring_overlay.png"
 
-local java_path = "/usr/lib/jvm/java-25-openjdk/bin/java"
+local java_path = "/usr/lib/jvm/java-21-openjdk/bin/java"
 local paceman_path = resources_folder .. "jars/paceman-tracker-0.7.1.jar"
 local ninbot_path = resources_folder .. "jars/Ninjabrain-Bot-1.5.1.jar"
 
@@ -32,15 +32,15 @@ end
 local ninbot_anchor, ninbot_opacity = "topright", 0.9
 local normal_sens, tall_sens = 7.66600442, 0.0674594018191557
 local xkb_layout = "danish_craft"
+local cursor_theme = "CrossR"
 local keybinds = {
 	enabled = {
 		["mb5"] = "F3",
 		["mb4"] = "backspace",
-		["leftctrl"] = "leftalt",
-		["leftalt"] = "leftctrl",
 		["0"] = "6",
 		["6"] = "0",
 		["CAPSLOCK"] = "KPASTERISK",
+		["E"] = "Home",
 	},
 
 	disabled = {},
@@ -77,6 +77,7 @@ local config = {
 		--background_png = bg_path,
 		ninb_anchor = ninbot_anchor,
 		ninb_opacity = ninbot_opacity,
+		cursor_theme = cursor_theme,
 	},
 	experimental = { debug = false, jit = false, tearing = false, scene_add_text = true },
 	shaders = {
