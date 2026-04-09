@@ -20,7 +20,7 @@ local java_path = "/usr/lib/jvm/java-21-openjdk/bin/java"
 local paceman_path = resources_folder .. "jars/paceman-tracker-0.7.1.jar"
 local ninbot_path = resources_folder .. "jars/Ninjabrain-Bot-1.5.2.jar"
 
-local cursor_theme = "Adwaita"
+local cursor_theme = "CrossR"
 
 -- == helper functions ==
 -- = read file function for shaders =
@@ -35,7 +35,7 @@ end
 
 -- == config variables ==
 local ninbot_anchor, ninbot_opacity, ninbot_offset_y = "topright", 1, 125
-local normal_sens, tall_sens = 7.66600442, 0.5749503315
+local normal_sens, tall_sens = 7.66600442, 0.28747516575
 local xkb_layout = "danish_craft"
 local keybinds = {
 	enabled = {
@@ -479,12 +479,10 @@ mode_manager:define("tall", {
     on_enter = function()
         scene:enable_group("tall", true)
         scene:enable_group("normal", false)
-        waywall.set_sensitivity(tall_sens)
     end,
     on_exit = function()
         scene:enable_group("tall", false)
         scene:enable_group("normal", true)
-        waywall.set_sensitivity(normal_sens)
     end,
 })
 
@@ -509,6 +507,16 @@ local ensure_paceman = Processes.ensure_java_jar(waywall, java_path, paceman_pat
 -- = ninbot =
 local is_ninb_ensured = false
 
+-- == sensitivity toggle ==
+local current_sens = "normal"
+
+local function apply_sens()
+    if current_sens == "normal" then
+        waywall.set_sensitivity(normal_sens)
+    else
+        waywall.set_sensitivity(tall_sens)
+    end
+end
 -- = remaps =
 local remaps_active = true
 local remaps_text = nil
@@ -517,7 +525,19 @@ local remaps_text = nil
 local actions = Keys.actions({
     -- = mode toggles ==
 	[keys.thin] = function() return mode_manager:toggle("thin") end,
-	[keys.tall] = function() return mode_manager:toggle("tall") end,
+    -- Shift + Alt (slow sens)
+    ["Shift-" .. keys.tall] = function()
+        current_sens = "tall"
+        apply_sens()
+        return mode_manager:toggle("tall")
+    end,
+
+    -- Alt alone (normal sens)
+    [keys.tall] = function()
+        current_sens = "normal"
+        apply_sens()
+        return mode_manager:toggle("tall")
+    end,
 	[keys.wide] = function() return mode_manager:toggle("wide") end,
 
     -- = fullscreen toggle =
