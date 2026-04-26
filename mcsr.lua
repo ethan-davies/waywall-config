@@ -20,7 +20,7 @@ local java_path = "/usr/lib/jvm/java-21-openjdk/bin/java"
 local paceman_path = resources_folder .. "jars/paceman-tracker-0.7.1.jar"
 local ninbot_path = resources_folder .. "jars/Ninjabrain-Bot-1.5.2.jar"
 
-local cursor_theme = "CrossR"
+local cursor_theme = "cross_r"
 
 -- == helper functions ==
 -- = read file function for shaders =
@@ -58,6 +58,8 @@ local keys = {
     thin = "V",
     tall = "Alt_L",
     wide = "grave",
+
+    create_world = "F12",
 
     -- apps
     toggle_ninbot = "F1",
@@ -584,6 +586,16 @@ local actions = Keys.actions({
             remaps_active = true
             waywall.set_remaps(keybinds.enabled)
             waywall.set_keymap({ layout = xkb_layout })
+        end
+    end,
+
+    [keys.create_world] = function()
+        for _, key in ipairs({
+            "Tab","Space","Tab","Tab","Tab","Space",
+            "Tab","Space","Space","Tab","Tab","Tab",
+            "Tab","Tab","Tab","Space",
+        }) do
+            waywall.press_key(key)
         end
     end,
 })
