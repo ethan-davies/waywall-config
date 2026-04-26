@@ -20,7 +20,7 @@ local java_path = "/usr/lib/jvm/java-21-openjdk/bin/java"
 local paceman_path = resources_folder .. "jars/paceman-tracker-0.7.1.jar"
 local ninbot_path = resources_folder .. "jars/Ninjabrain-Bot-1.5.2.jar"
 
-local cursor_theme = "cross_r"
+local cursor_theme, cursor_icon = "cross_r", "cell"
 
 -- == helper functions ==
 -- = read file function for shaders =
@@ -89,6 +89,7 @@ local config = {
         },
         ninb_opacity = ninbot_opacity,
         cursor_theme = cursor_theme,
+        cursor_icon = cursor_icon,
     },
     experimental = { debug = false, jit = false, tearing = false, scene_add_text = true, },
     shaders = {
