@@ -35,18 +35,17 @@ end
 
 -- == config variables ==
 local ninbot_anchor, ninbot_opacity, ninbot_offset_y = "topright", 1, 125
-local normal_sens, tall_sens = 7.66600442, 0.28747516575
-local xkb_layout = "danish_craft"
+local normal_sens, tall_sens = 7, 0.28747516575
+local xkb_layout = "mc"
 local keybinds = {
 	enabled = {
 		["mb5"] = "F3",
 		["mb4"] = "backspace",
-		["0"] = "6",
 		["6"] = "0",
-		["CAPSLOCK"] = "KPASTERISK",
-		["E"] = "Home",
+		["a"] = "Home",
 		["F1"] = "APOSTROPHE",
 		["APOSTROPHE"] = "F1",
+        ["CAPSLOCK"] = "F9"
 	},
     disabled = {
         
@@ -55,9 +54,9 @@ local keybinds = {
 
 local keys = {
     -- mode toggles
-    thin = "V",
+    thin = "*-V",
     tall = "Alt_L",
-    wide = "grave",
+    wide = "*-grave",
 
     create_world = "F12",
 
@@ -67,7 +66,7 @@ local keys = {
 
     -- waywall actions
     fullscreen = "Shift-O",
-    toggle_rebinds = "End",
+    toggle_rebinds = "Delete",
 }
 
 -- == main config ==
@@ -580,7 +579,7 @@ local actions = Keys.actions({
             remaps_active = false
             waywall.set_remaps(keybinds.disabled)
             waywall.set_keymap({ layout = "us" })
-            remaps_text = waywall.text("rebinds off", { x = 100, y = 100, color = "#FFFFFF", size = 2 })
+            remaps_text = waywall.text("rebinds off", { x = 100, y = 100, color = "#FFFFFF", size = 1 })
         else
             -- turn on all rebinds
             remaps_active = true
